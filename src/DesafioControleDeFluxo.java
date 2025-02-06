@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-public class DesafioControleDeFluxo {
+public class DesafioControleDeFluxo extends Exception {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o primeiro parâmetro");
@@ -10,16 +10,17 @@ public class DesafioControleDeFluxo {
         int parametroDois = scanner.nextInt();
         try {
             contar (parametroUm, parametroDois);
-        } catch (Exception e) {
+        } catch (ParametrosInvalidosException e) {
             System.out.println("O segundo parametro deve ser maior que o primeiro!");
         }finally{
             scanner.close();
         }
     }
     
-    static void contar(int parametroUm, int parametroDois) throws Exception {
-        if (parametroDois <= parametroUm)
-            throw new Exception("O segundo parametro deve ser maior que o primeiro!");
+    static void contar(int parametroUm, int parametroDois) throws ParametrosInvalidosException {
+        if (parametroDois <= parametroUm){
+            throw new ParametrosInvalidosException("O segundo parametro deve ser maior que o primeiro!");
+        }
         int contagem = parametroDois - parametroUm;
         for (int contador = 1; contador <= contagem; contador++ ){
             System.out.println("Imprimindo o número "+contador);
